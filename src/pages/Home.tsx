@@ -1,71 +1,41 @@
 import { useEffect, useState } from "react"
-import { fetchMuscle } from "../Api"
 
-import { muscle } from "../SearchSpecs"
+import { RootObject } from "../typos"
+import SearchComponent from "../components/SearchComponent"
 import { AiOutlineSearch } from "react-icons/ai"
-import { GiMuscleUp } from "react-icons/gi"
-
-
+import ExerciseCard from "../components/ExerciseCard"
 
 
 const Home = () => {
 
-    const [found, setFound] = useState(muscle)
-    const [muscleSearch, setMuscleSearch] = useState('')
-
-    const filterMusclesBySimilarity = (searchTerm: string) => {
-        const filteredMuscles: { [key: string]: string } = {};
-
-        for (const key in found) {
-            const muscleName = found[key];
-
-            if (muscleName.includes(searchTerm)) {
-                filteredMuscles[key] = muscleName;
-            }
-        }
-
-        return filteredMuscles;
-    }
-
+    const [data, setData] = useState<RootObject[] | null>([])
+    const [loading, setLoading] = useState<boolean>(false)
+    const [error, setError] = useState<boolean>(false)
 
 
     useEffect(() => {
+        console.log(data)
+    }, [data])
 
-        if (muscleSearch.length > 0) {
-            setFound(filterMusclesBySimilarity(muscleSearch))
-        }
-        else {
-            setFound(muscle)
-        }
 
-    }, [muscleSearch])
 
     return (
-        <div className="w-[80%]">
-            <div>
-                <div className="flex items-center relative rounded-sm w-[220px]">
-                    <input
-                        className="pl-6  w-[100%] bg-transparent py-1"
-                        type="text" placeholder="Search" />
-                    <AiOutlineSearch className='absolute left-1' />
-                </div>
-                <div className="muscle_search flex items-center relative rounded-sm w-[220px]">
-                    <input
-                        onChange={(e) => setMuscleSearch(e.target.value)}
-                  
-                        value={muscleSearch}
-                        className="selector pl-6 w-[100%] bg-transparent py-1"
-                        type="text" placeholder="Muscle" />
-                    <div className="search_cont absolute top-8 w-[100%] rounded-b-sm overflow-hidden">
-                        {
-                            Object.keys(found).map((key, i) => (
-                                <div key={i} 
-                                onClick={() => setMuscleSearch(key)}
-                                className="p-2 hover:bg-[#cdcdcd] cursor-pointer">{key}</div>
-                            ))
-                        }
+        <div className="w-[80%] mt-5">
+            <SearchComponent setData={setData} setError={setError} setLoading={setLoading} />
+            <div className="exercises-super w-[100%] mt-5 p-2 rounded-md">
+                <div className="flex w-full justify-end">
+                    <div className="flex items-center relative rounded-sm w-[220px] bg-white">
+                        <input
+                            className="pl-6  w-[100%] bg-transparent py-1"
+                            type="text" placeholder="Search" />
+                        <AiOutlineSearch className='absolute left-1' />
                     </div>
-                    <GiMuscleUp className='absolute left-1' />
+                </div>
+                <h1 className="font-bold text-2xl text-blue-400">Exercises</h1>
+                <div className="w-full  mt-3">
+                    {data && data.map((item, i) => (
+                        <ExerciseCard data={item} key={i}/>
+                    ))}
                 </div>
             </div>
         </div>
