@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiFillStar } from "react-icons/ai"
 import { BiSolidDownArrow } from "react-icons/bi"
-import { RootObject } from '../typos';
+import { RootObject, RootObjectVideo } from '../typos';
 import YouTube from "react-youtube";
+import { fetchVideo } from '../Api';
 
 
 interface SearchComponentProps {
@@ -20,6 +21,26 @@ const opts = {
 const ExerciseCard = ({ data }: SearchComponentProps) => {
 
     const [open, setOpen] = useState(false)
+    const [videoSearch, setVideoSearch] = useState<RootObjectVideo | null>()
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        if (open) {
+            fetchExercises()
+        }
+    }, [open])
+
+
+    const fetchExercises = async () => {
+        setLoading(true) 
+        try {
+            const fetch_data = await fetchVideo('How to do ' + data?.name)
+            setVideoSearch(fetch_data)
+        } catch (err) {
+            setLoading(false) 
+            console.log(err)
+        }
+    }
 
     const showComplex = (item: string) => {
 
@@ -64,9 +85,12 @@ const ExerciseCard = ({ data }: SearchComponentProps) => {
 
     }
 
+
     return (
         <div className="cursor-pointer exercise-card mb-2 exercise-card w-full bg-white hover:bg-gray-300 p-2 rounded-lg transition-all ease duration-300">
-            <div className='flex justify-between'>
+            <div 
+             onClick={() => { setOpen(!open) }}
+            className='flex justify-between my-2'>
                 <div>
                     <h1 className="font-bold text-gray-500 ">
                         {data && data?.name}
@@ -82,18 +106,28 @@ const ExerciseCard = ({ data }: SearchComponentProps) => {
                         {showComplex(data ? data?.difficulty : 'beginner')}
                     </div>
                     <div
-                        onClick={() => { }}
+                       
                         className='flex items-center justify-center ml-2 cursor-pointer'>
-                        <BiSolidDownArrow color={'#808080'} />
+                        <BiSolidDownArrow
+                            color={'#808080'} />
                     </div>
                 </div>
             </div>
-            <div className='flex w-full justify-between pt-6'>
-                <h1 className='text-gray-500 pr-5 text-justify'>{data && data.instructions}</h1>
-                <div className="video-player">
-                    <YouTube videoId={'M9aAQmRF9BY'} opts={opts} onReady={()=>{}}/>
+            {
+                open &&
+                <div className='exercise-card-extra flex w-full justify-between pt-6 '>
+                    <h1 className='text-gray-500 pr-5 text-justify'>{data && data.instructions}</h1>
+                    {loading &&
+                        <div className='flex items-center justify-center bg-gray-300 h-[290px] min-w-[460px]'> 
+                            <div className='loader'></div>
+                        </div>
+                    }
+                    <div className="video-player"  style={{ display: loading ? 'none' : 'block' }}>
+                        <YouTube videoId={videoSearch?.items[0]?.id.videoId} opts={opts} onReady={() => {setLoading(false)}} />
+                    </div>
                 </div>
-            </div>
+            }
+
         </div>
     )
 }
