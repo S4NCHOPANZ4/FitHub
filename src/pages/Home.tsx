@@ -1,36 +1,14 @@
-import {  useState } from "react"
-
-import { RootObject } from "../typos"
-import SearchComponent from "../components/SearchComponent"
-import ExerciseCard from "../components/ExerciseCard"
-import Error from "../components/Error"
+import Navbar from '../components/Navbar'
 
 const Home = () => {
 
-    const [data, setData] = useState<RootObject[] | null>([])
-    const [loading, setLoading] = useState<boolean>(false)
-    const [error, setError] = useState<boolean>(false)
-    const [errorMessage, setErrorMessage] = useState<string | null | undefined>()
-
-
     return (
-        <div className="w-full md:w-[80%] mt-5"> 
-            <SearchComponent setData={setData} setError={setError} setLoading={setLoading} setErrorMessage={setErrorMessage} />
-            <div className="exercises-super w-[100%] mt-5 p-2 rounded-md">
+        <div className="w-full h-full flex">
+            <Navbar id={undefined}/>
+            <div className="w-full h-full md:w-[80%] mt-5  ">
+                <div className="w-full flex  items-center justify-center mt-3" >
+                    <h1 className="text-4xl text-blue-400 font-semibold mb-3">Welcome!</h1>
 
-                <h1 className="font-bold text-2xl text-blue-400">Exercises</h1>
-                {loading && 
-                <div className="w-full mt-3 flex items-center justify-center">
-                    <div className='loader_mini'></div>
-                </div>
-                }
-                <div className="w-full  mt-3">
-                    {data && data.map((item, i) => (
-                        <ExerciseCard data={item} key={i}/>
-                    ))}
-                    {(error && !loading) && 
-                    <Error errorMessage={errorMessage}/>
-                    }
                 </div>
             </div>
         </div>

@@ -104,26 +104,26 @@ const ExerciseCard = ({ data }: SearchComponentProps) => {
 
 
     return (
-        <div className="min-w-[260px] cursor-pointer exercise-card mb-2 exercise-card w-full bg-white hover:bg-gray-200 p-2 rounded-lg transition-all ease duration-300">
+        <div className="min-w-[260px] cursor-pointer exercise-card mb-2 exercise-card w-full bg-zinc-800 hover:bg-zinc-600 p-2 rounded-lg transition-all ease duration-300">
             <div
                 onClick={() => { setOpen(!open) }}
                 className='flex justify-between my-2'>
                 <div>
-                    <h1 className="font-bold text-gray-500 ">
+                    <h1 className="font-bold text-gray-300 ">
                         {data && data?.name}
                     </h1>
-                    <h1 className="font-ligth text-gray-500 ">
+                    <h1 className="font-ligth text-gray-300 ">
                         {data && data?.muscle}
                     </h1>
                 </div>
                 <div className=' flex'>
 
-                    <div className="flex flex-col  justify-end items-end">
-                        <h1 className='text-gray-500 font-semibold'> <span className='font-light'>Equipment:</span> {data ? data.equipment : 'other'}</h1>
+                    <div className="flex flex-col  justify-end items-end ">
+                        <h1 className='text-gray-300 font-semibold'> <span className='font-light'>Equipment:</span> {data ? data.equipment : 'other'}</h1>
                         {showComplex(data ? data?.difficulty : 'beginner')}
                     </div>
                     <div
-                        className='flex items-center justify-center ml-2 cursor-pointer'>
+                        className=' flex items-center justify-center ml-2 cursor-pointer'>
                         <BiSolidDownArrow color={'#808080'} />
                     </div>
                 </div>
@@ -132,7 +132,7 @@ const ExerciseCard = ({ data }: SearchComponentProps) => {
                 open &&
                 <div className='exercise-card-extra flex w-full justify-between pt-6 xl:flex-row flex-col'>
                     {loading &&
-                        <div className='flex items-center justify-center bg-gray-300 h-[190px] min-w-[230px] md:h-[230px] md:min-w-[360px] xl:h-[290px] xl:min-w-[460px]'>
+                        <div className='flex items-center justify-center bg-zinc-700 h-[190px] min-w-[230px] md:h-[230px] md:min-w-[360px] xl:h-[290px] xl:min-w-[460px]'>
                             <div className='loader_mini'></div>
                         </div>
                     }
@@ -142,7 +142,7 @@ const ExerciseCard = ({ data }: SearchComponentProps) => {
                         <YouTube  className='xl:hidden md:hidden flex items-center justify-center' videoId={videoSearch?.items[0]?.id.videoId} opts={opts_sm} onReady={() => { setLoading(false) }} />
                     </div>
   
-                    <h1 className='text-gray-500 pl-0 md:pl-5 text-justify text-sm xl:mt-0 mt-5'>
+                    <h1 className='text-gray-300 pl-0 md:pl-5 text-justify text-sm xl:mt-0 mt-5 mr-1'>
 
                         {data && <ReadMoreText text={data.instructions} />}</h1>
                 </div>

@@ -26,6 +26,13 @@ export interface Api_fetchMuscle{
     muscle?: string;
     difficulty?: string;
 }
+export interface Api_fetchDailyCal {
+    age: string,
+    gender: string,
+    height: string,
+    weight: string,
+    activitylevel: string
+  }
 
 export interface RootObjectVideo {
     items:         Item[];

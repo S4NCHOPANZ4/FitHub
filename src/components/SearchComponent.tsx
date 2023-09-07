@@ -82,18 +82,17 @@ const SearchComponent = ({ setData, setError, setLoading, setErrorMessage }: Sea
         <div className="w-[100%]">
             <div className="flex justify-between sm:flex-row flex-col">
                 <div className="search-bar mb-2 md:md-0 flex items-center relative rounded-sm sm:w-[45%] w-[full] sm:pr-1 pr-0
-               bg-gray-200 ">
+               bg-zinc-800 ">
                     <input
                         value={generalSearch}
                         onChange={(e) => { handleGeneralSearch(e.target.value) }}
-                        className="focus:outline-none pl-6  w-[100%] bg-transparent py-1"
+                        className="text-white focus:outline-none pl-6  w-[100%] bg-transparent py-1"
                         type="text" placeholder="Search" />
-                    <AiOutlineSearch className='absolute left-1' />
+                    <AiOutlineSearch className='absolute left-1' color="white"/>
                 </div>
                 <div className="sm:w-[50%] w-[full] sm:pl-1 pl-0">
-                    <div className="bg-gray-200 mb-2 md:md-0 muscle_search flex items-center relative rounded-sm sm:w-[80%] w-full">
+                    <div className="bg-zinc-800 mb-2 md:md-0 muscle_search flex items-center relative rounded-sm sm:w-[80%] w-full">
                         <input
-
                             onChange={(e) => {
                                 setGeneralSearch('')
                                 if (e.target.value.length <= 0) {
@@ -107,7 +106,7 @@ const SearchComponent = ({ setData, setError, setLoading, setErrorMessage }: Sea
                                 setMuscleSearch(e.target.value)
                             }}
                             value={muscleSearch}
-                            className="focus:outline-blue-400 selector pl-6 w-[100%] bg-transparent py-1"
+                            className=" selector pl-6 w-[100%] bg-transparent py-1 text-white"
                             type="text" placeholder="Muscle" />
                         <div className="search_cont bg-white absolute top-8 w-[100%] min-w-[100px] max-h-[250px] overflow-auto rounded-b-sm  z-10">
                             {
@@ -119,49 +118,49 @@ const SearchComponent = ({ setData, setError, setLoading, setErrorMessage }: Sea
                                             else { setSearchParams({ muscle: key }) }
                                             setMuscleSearch(key)
                                         }}
-                                        className="p-2 hover:bg-[#cdcdcd] cursor-pointer">{key}</div>
+                                        className="bg-zinc-800 text-white p-2 hover:bg-zinc-600 cursor-pointer">{key}</div>
                                 ))
                             }
                         </div>
-                        <GiMuscleUp className='absolute left-1' />
+                        <GiMuscleUp className='absolute left-1' color="white" />
                     </div>
-                    <div className="bg-gray-200 mb-2 md:md-0 muscle_search flex items-center relative rounded-sm sm:w-[80%] w-full cursor-pointer 
+                    <div className="bg-zinc-800 mb-2 md:md-0 muscle_search flex items-center relative rounded-sm sm:w-[80%] w-full cursor-pointer 
                     py-1">
                         <div className="selector pl-6 w-[100%] ">
                             {!complexSearch ?
                                 <h1 className="text-gray-400 pl-1">Set Complexity</h1>
                                 :
-                                <h1 className="text-gray-700 pl-1">{complexSearch}</h1>
+                                <h1 className="text-white pl-1">{complexSearch}</h1>
                             }
                         </div>
                         <div className="search_cont absolute top-8 w-[100%] rounded-b-sm overflow-hidden z-10 
-                    bg-white">
+                    bg-zinc-800 text-white">
                             <div
                                 onClick={() => { handleComplexChange(null) }}
-                                className="p-2 hover:bg-[#cdcdcd] cursor-pointer flex items-center ">
+                                className="p-2 hover:bg-zinc-600 cursor-pointer flex items-center ">
                                 <div className="h-[10px] w-[10px] bg-gray-400 rounded-full"></div>
                                 <h1 className="ml-2">None</h1>
                             </div>
                             <div
                                 onClick={() => { handleComplexChange('Beginner') }}
-                                className="p-2 hover:bg-[#cdcdcd] cursor-pointer flex items-center ">
+                                className="p-2 hover:bg-zinc-600 cursor-pointer flex items-center ">
                                 <div className="h-[10px] w-[10px] bg-green-400 rounded-full"></div>
                                 <h1 className="ml-2">Simple</h1>
                             </div>
                             <div
                                 onClick={() => { handleComplexChange('Intermediate') }}
-                                className="p-2 hover:bg-[#cdcdcd] cursor-pointer flex items-center ">
+                                className="p-2 hover:bg-zinc-600 cursor-pointer flex items-center ">
                                 <div className="h-[10px] w-[10px] bg-yellow-400 rounded-full"></div>
                                 <h1 className="ml-2">Medium</h1>
                             </div>
                             <div
                                 onClick={() => { handleComplexChange('Expert') }}
-                                className="p-2 hover:bg-[#cdcdcd] cursor-pointer flex items-center ">
+                                className="p-2 hover:bg-zinc-600 cursor-pointer flex items-center ">
                                 <div className="h-[10px] w-[10px] bg-red-400 rounded-full"></div>
                                 <h1 className="ml-2">Complex</h1>
                             </div>
                         </div>
-                        <TbTopologyComplex className='absolute left-1' />
+                        <TbTopologyComplex className='absolute left-1' color="white"/>
                     </div>
                 </div>
                 <button
