@@ -11,6 +11,13 @@
     display: block;
 }
 
+.icon_nav{
+    border-bottom: 1px solid rgba(57, 57, 57, 0.2);
+}
+.navbar-card{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+}
 .exercise-card{
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
@@ -18,9 +25,29 @@
 .exercises-super{
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
-.exercise-card{
-
+/* .search-bar{
+    border-right: 2px solid rgba(57, 57, 57, 0.2);
 }
+@media (max-width: 900px) {
+    .search-bar {
+      border-right: none; 
+    }
+  } */
+
 .exercise-card-extra{
     border-top: 1px solid rgba(57, 57, 57, 0.2);
+}
+.loader_mini {
+    margin: auto;
+    border: 1px solid #eaf4ff;
+    border-radius: 50%;
+    border-top: 1px solid #375776;
+    width: 20px;
+    height: 20px;
+    animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

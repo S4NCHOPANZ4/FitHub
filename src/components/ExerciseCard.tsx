@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AiFillStar } from "react-icons/ai"
 import { BiSolidDownArrow } from "react-icons/bi"
 import { RootObject, RootObjectVideo } from '../typos';
@@ -17,6 +17,23 @@ const opts = {
         autoplay: 0, // Reproducir automáticamente el video
     },
 };
+const opts_md = {
+    height: "230",
+    width: "360",
+    playerVars: {
+        autoplay: 0, // Reproducir automáticamente el video
+    },
+};
+
+
+const opts_sm = {
+    height: "190",
+    width: "260",
+    playerVars: {
+        autoplay: 0, // Reproducir automáticamente el video
+    },
+};
+
 
 const ExerciseCard = ({ data }: SearchComponentProps) => {
 
@@ -32,12 +49,12 @@ const ExerciseCard = ({ data }: SearchComponentProps) => {
 
 
     const fetchExercises = async () => {
-        setLoading(true) 
+        setLoading(true)
         try {
-            const fetch_data = await fetchVideo('How to do ' + data?.name)
+            const fetch_data = await fetchVideo('How to do ' + data?.name + ' gym')
             setVideoSearch(fetch_data)
         } catch (err) {
-            setLoading(false) 
+            setLoading(false)
             console.log(err)
         }
     }
@@ -87,10 +104,10 @@ const ExerciseCard = ({ data }: SearchComponentProps) => {
 
 
     return (
-        <div className="cursor-pointer exercise-card mb-2 exercise-card w-full bg-white hover:bg-gray-300 p-2 rounded-lg transition-all ease duration-300">
-            <div 
-             onClick={() => { setOpen(!open) }}
-            className='flex justify-between my-2'>
+        <div className="min-w-[260px] cursor-pointer exercise-card mb-2 exercise-card w-full bg-white hover:bg-gray-200 p-2 rounded-lg transition-all ease duration-300">
+            <div
+                onClick={() => { setOpen(!open) }}
+                className='flex justify-between my-2'>
                 <div>
                     <h1 className="font-bold text-gray-500 ">
                         {data && data?.name}
@@ -106,30 +123,65 @@ const ExerciseCard = ({ data }: SearchComponentProps) => {
                         {showComplex(data ? data?.difficulty : 'beginner')}
                     </div>
                     <div
-                       
                         className='flex items-center justify-center ml-2 cursor-pointer'>
-                        <BiSolidDownArrow
-                            color={'#808080'} />
+                        <BiSolidDownArrow color={'#808080'} />
                     </div>
                 </div>
             </div>
             {
                 open &&
-                <div className='exercise-card-extra flex w-full justify-between pt-6 '>
-                    <h1 className='text-gray-500 pr-5 text-justify'>{data && data.instructions}</h1>
+                <div className='exercise-card-extra flex w-full justify-between pt-6 xl:flex-row flex-col'>
                     {loading &&
-                        <div className='flex items-center justify-center bg-gray-300 h-[290px] min-w-[460px]'> 
-                            <div className='loader'></div>
+                        <div className='flex items-center justify-center bg-gray-300 h-[190px] min-w-[230px] md:h-[230px] md:min-w-[360px] xl:h-[290px] xl:min-w-[460px]'>
+                            <div className='loader_mini'></div>
                         </div>
                     }
-                    <div className="video-player"  style={{ display: loading ? 'none' : 'block' }}>
-                        <YouTube videoId={videoSearch?.items[0]?.id.videoId} opts={opts} onReady={() => {setLoading(false)}} />
+                    <div className='flex items-center justify-center' style={{ display: loading ? 'none' : 'block' }}>
+                        <YouTube className='xl:flex hidden items-center justify-center'  videoId={videoSearch?.items[0]?.id.videoId} opts={opts} onReady={() => { setLoading(false) }} />
+                        <YouTube  className='md:flex xl:hidden hidden items-center justify-center' videoId={videoSearch?.items[0]?.id.videoId} opts={opts_md} onReady={() => { setLoading(false) }} />
+                        <YouTube  className='xl:hidden md:hidden flex items-center justify-center' videoId={videoSearch?.items[0]?.id.videoId} opts={opts_sm} onReady={() => { setLoading(false) }} />
                     </div>
+  
+                    <h1 className='text-gray-500 pl-0 md:pl-5 text-justify text-sm xl:mt-0 mt-5'>
+
+                        {data && <ReadMoreText text={data.instructions} />}</h1>
                 </div>
             }
 
         </div>
     )
 }
+
+function ReadMoreText({ text }: { text: string }) {
+    const words = text.split(' ');
+    const maxWords = 130;
+    const [showMore, setShowMore] = useState(false);
+
+    const truncatedText = words.slice(0, maxWords).join(' ');
+
+    const toggleShowMore = () => {
+        setShowMore(!showMore);
+    };
+
+    return (
+        <div>
+            <p>
+                {showMore ? text : truncatedText}
+                {words.length > maxWords && (
+                    <span>
+                        {showMore ? (
+                            <button className='ml-2 text-blue-400' onClick={toggleShowMore}>Read Less</button>
+                        ) : (
+                            <button className='ml-2 text-blue-400' onClick={toggleShowMore}>Read More</button>
+                        )}
+                    </span>
+                )}
+            </p>
+        </div>
+    );
+}
+
+
+
 
 export default ExerciseCard

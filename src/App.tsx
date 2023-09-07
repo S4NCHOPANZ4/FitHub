@@ -7,7 +7,7 @@ function App() {
   return (
     <div
       className="min-h-[100vh] w-[100%] bg-[#fafafa]">
-      <div className="w-[80%] m-auto flex justify-between">
+      <div className="md:w-[80%] w-[95%] m-auto flex md:flex-row flex-col justify-between ">
         <Navbar />
         <BrowserRouter>
           <Routes>
