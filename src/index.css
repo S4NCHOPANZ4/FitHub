@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 
-
+html{
+    background-color: #1c1c1c;
+}
 
 .search_cont{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

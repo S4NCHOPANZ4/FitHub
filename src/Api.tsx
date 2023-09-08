@@ -49,6 +49,7 @@ export async function fetchVideo(params: string | undefined) {
 
 export async function fetchDailyCalories(params: Api_fetchDailyCal) {
 
+
   const options = {
     method: 'GET',
     url: 'https://fitness-calculator.p.rapidapi.com/dailycalorie',

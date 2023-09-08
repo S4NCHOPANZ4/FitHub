@@ -26,13 +26,8 @@ export interface Api_fetchMuscle{
     muscle?: string;
     difficulty?: string;
 }
-export interface Api_fetchDailyCal {
-    age: string,
-    gender: string,
-    height: string,
-    weight: string,
-    activitylevel: string
-  }
+
+
 
 export interface RootObjectVideo {
     items:         Item[];
@@ -81,4 +76,43 @@ export interface RootObjectVideo {
     resultsPerPage: number;
     totalResults:   number;
    }
+
+//=================================================
+export interface ObjectDailyCalories {
+    data:           DataDailyCalories;
+    request_result: string;
+    status_code:    number;
+   }
    
+   export interface DataDailyCalories {
+    BMR:   number;
+    goals: Goals;
+   }
+   
+   export interface Goals {
+    "Extreme weight gain": WeightGain;
+    "Extreme weight loss": WeightLoss;
+    "Mild weight gain":    WeightGain;
+    "Mild weight loss":    WeightLoss;
+    "Weight gain":         WeightGain;
+    "Weight loss":         WeightLoss;
+    "maintain weight":     number;
+   }
+   
+   export interface WeightGain {
+    calory:        number;
+    "gain weight": string;
+   }
+   
+   export interface WeightLoss {
+    calory:        number;
+    "loss weight": string;
+   }
+   
+   export interface Api_fetchDailyCal {
+    age: number| string| null| undefined,
+    gender: number| string| null | undefined,
+    height: number| string| null | undefined,
+    weight: number| string| null | undefined,
+    activitylevel: number| string| null | undefined
+  }
