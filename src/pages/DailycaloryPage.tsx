@@ -3,7 +3,6 @@ import Navbar from '../components/Navbar'
 import { BiSolidBabyCarriage } from 'react-icons/bi'
 import { FaTransgender } from 'react-icons/fa'
 import { GiBodyHeight, GiWeight } from 'react-icons/gi'
-import { MdHardware } from 'react-icons/md'
 import { BsGenderMale, BsGenderFemale, BsGenderAmbiguous } from 'react-icons/bs'
 import { AiOutlineSend } from 'react-icons/ai'
 
@@ -13,7 +12,7 @@ const DailycaloryPage = () => {
   const [gender, setGender] = useState<string | null>()
   const [height, setHeight] = useState<number| string| null>('')
   const [weight, setWeight] = useState<number| string| null>('')
-  const [level, setLevel] = useState('')
+  const [level, setLevel] = useState<string | null>()
   
   return (
     <>
@@ -38,7 +37,7 @@ const DailycaloryPage = () => {
             <div className="bg-zinc-800 mb-2 md:md-0 muscle_search flex items-center relative rounded-sm sm:w-[140px] w-full cursor-pointer 
                     py-1">
               <div className="selector pl-6 w-[100%] ">
-                <h1 className="text-gray-400 pl-1">{gender? gender: 'Set Complexity'}</h1>
+                <h1 className="text-gray-400 pl-1">{gender? gender: 'Set Gender'}</h1>
               </div>
               <div className="search_cont absolute top-8 w-[100%] rounded-b-sm overflow-hidden z-10 
                     bg-zinc-800 text-white">
@@ -92,39 +91,45 @@ const DailycaloryPage = () => {
             <div className="bg-zinc-800 mb-2 md:md-0 muscle_search flex items-center relative rounded-sm sm:w-[140px] w-full cursor-pointer 
                     py-1">
               <div className="selector pl-6 w-[100%] ">
-                <h1 className="text-gray-400 pl-1">Level </h1>
+                <h1 className="text-gray-400 pl-1">{level? level: 'Exhaustion'} </h1>
               </div>
               <div className="search_cont absolute top-8 w-[100%] rounded-b-sm overflow-hidden z-10 
                     bg-zinc-800 text-white">
                 <div
+                  onClick={()=>{setLevel("level_1")}}
                   className="p-2 hover:bg-zinc-600 cursor-pointer flex items-center ">
                   <div className="h-[10px] w-[10px] bg-gray-400 rounded-full"></div>
-                  <h1 className="ml-2">Level 1</h1>
+                  <h1 className="ml-2">Low</h1>
                 </div>
                 <div
+                  onClick={()=>{setLevel("level_2")}}
                   className="p-2 hover:bg-zinc-600 cursor-pointer flex items-center ">
                   <div className="h-[10px] w-[10px] bg-green-200 rounded-full"></div>
-                  <h1 className="ml-2">Level 2</h1>
+                  <h1 className="ml-2">Simple</h1>
                 </div>
                 <div
+                  onClick={()=>{setLevel("level_3")}}
                   className="p-2 hover:bg-zinc-600 cursor-pointer flex items-center ">
                   <div className="h-[10px] w-[10px] bg-green-400 rounded-full"></div>
-                  <h1 className="ml-2">Level 3</h1>
+                  <h1 className="ml-2">Intermediate</h1>
                 </div>
                 <div
+                  onClick={()=>{setLevel("level_4")}}
                   className="p-2 hover:bg-zinc-600 cursor-pointer flex items-center ">
                   <div className="h-[10px] w-[10px] bg-yellow-400 rounded-full"></div>
-                  <h1 className="ml-2">Level 4</h1>
+                  <h1 className="ml-2">Moderate</h1>
                 </div>
                 <div
+                  onClick={()=>{setLevel("level_5")}}
                   className="p-2 hover:bg-zinc-600 cursor-pointer flex items-center ">
                   <div className="h-[10px] w-[10px] bg-red-400 rounded-full"></div>
-                  <h1 className="ml-2">Level 5</h1>
+                  <h1 className="ml-2">Difficult</h1>
                 </div>
                 <div
+                  onClick={()=>{setLevel("level_6")}}
                   className="p-2 hover:bg-zinc-600 cursor-pointer flex items-center ">
                   <div className="h-[10px] w-[10px] bg-red-500 rounded-full"></div>
-                  <h1 className="ml-2">Level 6</h1>
+                  <h1 className="ml-2">Challenging</h1>
                 </div>
 
 
