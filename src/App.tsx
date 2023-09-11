@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Home , DailycaloryPage, ExerciseWikiPage} from './Routes'
+import { Home , DailycaloryPage, ExerciseWikiPage, BMIpage} from './Routes'
 
 function App() {
 
@@ -15,6 +15,9 @@ function App() {
           </Routes>
           <Routes>
             <Route path="/dailyCal" element={<DailycaloryPage />} />
+          </Routes>
+          <Routes>
+            <Route path="/bmi" element={<BMIpage />} />
           </Routes>
           <Routes>
             <Route path="/" element={<Home />} />

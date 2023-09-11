@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Api_fetchDailyCal, Api_fetchMuscle } from "./typos";
+import { Api_fetchBMI, Api_fetchDailyCal, Api_fetchMuscle } from "./typos";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const API_HOST = import.meta.env.VITE_API_HOST;
@@ -46,7 +46,7 @@ export async function fetchVideo(params: string | undefined) {
     throw error;
   }
 }
-
+//===============================================================================
 export async function fetchDailyCalories(params: Api_fetchDailyCal) {
 
 
@@ -67,7 +67,28 @@ export async function fetchDailyCalories(params: Api_fetchDailyCal) {
     throw error;
   }
 }
+//===============================================================================
+export async function BmiFetch(params: Api_fetchBMI) {
 
+
+  const options = {
+    method: 'GET',
+    url: 'https://fitness-calculator.p.rapidapi.com/bmi',
+    params,
+    headers: {
+      'X-RapidAPI-Key':  API_KEY,
+      'X-RapidAPI-Host': 'fitness-calculator.p.rapidapi.com'
+    }
+  };
+  
+  try {
+    const response = await axios.request(options)
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching video:", error);
+    throw error;
+  }
+}
 
 
 

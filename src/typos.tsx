@@ -78,6 +78,9 @@ export interface RootObjectVideo {
    }
 
 //=================================================
+
+
+
 export interface ObjectDailyCalories {
     data:           DataDailyCalories;
     request_result: string;
@@ -116,3 +119,26 @@ export interface ObjectDailyCalories {
     weight: number| string| null | undefined,
     activitylevel: number| string| null | undefined
   }
+//================object BMI fetch============================
+
+
+export interface Api_fetchBMI{
+    age?: string,
+    height?: string,
+    weight?: string,
+}
+
+
+
+export interface RootObject {
+    data:           BMIDataObj;
+    request_result: string;
+    status_code:    number;
+   }
+   
+   export interface BMIDataObj {
+    bmi:               number;
+    health:            string;
+    healthy_bmi_range: string;
+   }
+   
