@@ -46,9 +46,9 @@ const BMI_graphic = ({ data, bmi }: Interface) => {
 
   return (
     <div>
-      <div className='h-[10px] w-[300px] bg-rose-500 flex justify-start relative'>
+      <div className='md:h-[8px] h-[5px] sm:w-[300px] w-[70vw] bg-rose-500 flex justify-start relative rounded-md'>
         <div 
-         style={{width: innerBarWidth(Number(valueMin))+"%"}} className='bg-yellow-200 '></div>
+         style={{width: innerBarWidth(Number(valueMin))+"%"}} className='bg-yellow-200 rounded-l-md'></div>
         <div 
         style={{width: innerBarWidth(Number(valueMax))+"%"}}
         className='h-full  bg-emerald-400 relative'>

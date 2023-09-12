@@ -47,6 +47,12 @@ const ExerciseCard = ({ data }: SearchComponentProps) => {
         }
     }, [open])
 
+    useEffect(() => {
+        setOpen(false)
+        console.log('a');
+        
+    }, [data])
+
 
     const fetchExercises = async () => {
         setLoading(true)

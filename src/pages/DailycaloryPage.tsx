@@ -104,7 +104,7 @@ const DailycaloryPage = () => {
   return (
     <>
       <div>
-        <Navbar id={'a'} />
+        <Navbar id={'dailyCal'} />
       </div>
       <div className='w-full md:w-[80%]  flex  justify-center h-[90vh] mt-5'>
         <div className='flex w-full flex-col'>

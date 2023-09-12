@@ -52,6 +52,10 @@ html{
     animation: spinner 1s linear infinite;
 }
 
+.smooth-transition {
+    transition: all 0.3s ease-in-out;
+}
+
 @keyframes spinner {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
