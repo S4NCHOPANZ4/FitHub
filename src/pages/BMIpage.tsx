@@ -1,16 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import { BiSolidBabyCarriage } from 'react-icons/bi'
 import { GiBodyHeight, GiWeight } from 'react-icons/gi'
 import { BmiFetch } from '../Api'
+import Cases from '../WeigthCases'
+import { WeigthCase } from '../typos'
 //body
 import Body from '../assets/body/body-d.svg'
-import BodyM from '../assets/body/body-m.svg'
-import BodyH from '../assets/body/body-h.svg'
-import BodyL from '../assets/body/body-l.svg'
+
 import { BMIDataObj } from '../typos'
 import { AiOutlineSend } from 'react-icons/ai'
 import { BsHeartPulseFill } from 'react-icons/bs'
+import BMI_graphic from '../components/BMI_graphic'
 
 const BMIpage = () => {
 
@@ -24,8 +25,17 @@ const BMIpage = () => {
 
 
     const [data, setData] = useState<BMIDataObj | undefined | null>()
+    const [dataCase, setDataCase] = useState<WeigthCase | null>()
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
+
+
+    useEffect(() => {
+        if (data && !error) {
+            setDataCase(findCase(data.health))
+        }
+    }, [data])
+
 
 
     const submitForm = () => {
@@ -83,13 +93,20 @@ const BMIpage = () => {
             }
         }
     }
-    // Severe Thinness
-    // Moderate Thinness
-    // Normal
-    // Overweight
-    // Obese Class I
-    // Obese Class II
-    // Obese Class III
+    const findCase = (name: string) => {
+        for (const key in Cases) {
+            if (Cases.hasOwnProperty(key)) {
+                const caso = Cases[key];
+                if (caso.caseName === name) {
+                    return caso;
+                }
+            }
+        }
+        return null
+    }
+
+
+
     return (
         <>
             <div>
@@ -146,7 +163,7 @@ const BMIpage = () => {
                         <AiOutlineSend size={20} />
                     </button>
                 </div>
-                <div className='ml-2 w-full flex bg-zinc-800 rounded-md items-center justify-center min-h-[450px]'>
+                <div className='ml-2 w-full flex bg-zinc-800 rounded-md items-center justify-center  min-h-[450px]'>
                     {loading &&
 
                         <div className="loader_mini"></div>
@@ -154,22 +171,29 @@ const BMIpage = () => {
                     {
                         data ?
                             !loading &&
-                            <div className="flex flex-col w-full h-full p-3 min-h-[300px]">
-                              
-                              <div>
-                                    <img className='h-[400px]' src={Body}/>
+                            <div className="flex flex-row justify-evenly w-full h-full p-3 min-h-[300px]">
+
+                                <div>
+                                    <img className='h-[400px]' src={dataCase?.img} />
                                 </div>
-                                <div className='flex  flex-col justify-center items-center'>
-                                    <BsHeartPulseFill color="#bfbfbf" size={40} />
-                                    <p className="text-zinc-400 text-lg mt-2">Use the menu above to make a search!</p>
+                                <div className='flex flex-col'>
+                                    <div>
+                                        {/* {divide(data?.healthy_bmi_range)} */}
+                                        <BMI_graphic data={data?.healthy_bmi_range} bmi={data?.bmi} />
+                                    </div>
+                                    <div className='flex  flex-col justify-center items-center'>
+                                        <BsHeartPulseFill color="#bfbfbf" size={40} />
+                                        <p className="text-zinc-400 text-lg mt-2">Use the menu above to make a search!</p>
+                                    </div>
                                 </div>
+
                             </div>
                             :
                             !loading &&
                             <div className="flex items-center  justify-evenly text-zinc-400 w-full h-full p-3 min-h-[300px]">
 
                                 <div>
-                                    <img className='h-[400px]' src={Body}/>
+                                    <img className='h-[400px]' src={Body} />
                                 </div>
                                 <div className='flex  flex-col justify-center items-center'>
                                     <BsHeartPulseFill color="#bfbfbf" size={40} />
@@ -181,30 +205,30 @@ const BMIpage = () => {
 
                 </div>
                 <div className="flex flex-col justify-between w-full h-full p-3 mt-5">
-            <div className="mb-10">
-              <h1 className="text-blue-400 font-semibold text-2xl mb-1">Welcome to the BMI Calculator</h1>
-              <h1 className="text-gray-400 text-md text-justify">The BMI Calculator is here to assist you in understanding your current health status. With our easy-to-use interface, simply input your height and weight, and let us calculate your BMI accurately. This essential tool offers insights into whether you are underweight, at a healthy weight, overweight, or obese, helping you make informed decisions about your health and well-being.</h1>
-            </div>
-            <div className="">
-              <h1 className="text-xl text-blue-400 mb-2">Search specifications</h1>
-              <div className="mb-2">
-                <h1 className="text-blue-400 font-normal text-mb mb-1">Age</h1>
-                <h1 className="text-gray-400 text-sm">Values between: <span className="text-blue-400 text-sm">0 years - 80 years</span></h1>
-              </div>
-              <div className="mb-2">
-                <h1 className="text-blue-400 font-normal text-mb mb-1">Height</h1>
-                <h1 className="text-gray-400 text-sm">Values between: <span className="text-blue-400 text-sm">130cm  - 230cm</span></h1>
-              </div>
-              <div className="mb-4">
-                <h1 className="text-blue-400 font-normal text-mb mb-1">Weight</h1>
-                <h1 className="text-gray-400 text-sm">Values between: <span className="text-blue-400 text-sm">40kg - 160kg</span></h1>
-              </div>
-            </div>
-            <div>
-              <h1 className="text-gray-400 text-xs text-justify">The content provided on this website is for informational and educational purposes only. It is not intended to be a substitute for medical advice, diagnosis or treatment provided by appropriately qualified health care professionals.</h1>
-            </div>
+                    <div className="mb-10">
+                        <h1 className="text-blue-400 font-semibold text-2xl mb-1">Welcome to the BMI Calculator</h1>
+                        <h1 className="text-gray-400 text-md text-justify">The BMI Calculator is here to assist you in understanding your current health status. With our easy-to-use interface, simply input your height and weight, and let us calculate your BMI accurately. This essential tool offers insights into whether you are underweight, at a healthy weight, overweight, or obese, helping you make informed decisions about your health and well-being.</h1>
+                    </div>
+                    <div className="">
+                        <h1 className="text-xl text-blue-400 mb-2">Search specifications</h1>
+                        <div className="mb-2">
+                            <h1 className="text-blue-400 font-normal text-mb mb-1">Age</h1>
+                            <h1 className="text-gray-400 text-sm">Values between: <span className="text-blue-400 text-sm">0 years - 80 years</span></h1>
+                        </div>
+                        <div className="mb-2">
+                            <h1 className="text-blue-400 font-normal text-mb mb-1">Height</h1>
+                            <h1 className="text-gray-400 text-sm">Values between: <span className="text-blue-400 text-sm">130cm  - 230cm</span></h1>
+                        </div>
+                        <div className="mb-4">
+                            <h1 className="text-blue-400 font-normal text-mb mb-1">Weight</h1>
+                            <h1 className="text-gray-400 text-sm">Values between: <span className="text-blue-400 text-sm">40kg - 160kg</span></h1>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 className="text-gray-400 text-xs text-justify">The content provided on this website is for informational and educational purposes only. It is not intended to be a substitute for medical advice, diagnosis or treatment provided by appropriately qualified health care professionals.</h1>
+                    </div>
 
-          </div>
+                </div>
             </div>
             {/* <img src={BodyL} alt="" />
             <img src={Body} alt="" />

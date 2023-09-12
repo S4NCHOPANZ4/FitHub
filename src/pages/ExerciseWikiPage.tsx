@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar' 
 import SearchComponent from '../components/SearchComponent'
 import ExerciseCard from '../components/ExerciseCard'
 import Error from "../components/Error"
 import { RootObject } from '../typos'
 
-
+ 
 const ExerciseWikiPage = () => {
     const [data, setData] = useState<RootObject[] | null>([])
     const [loading, setLoading] = useState<boolean>(false)
