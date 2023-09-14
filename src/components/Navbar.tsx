@@ -48,10 +48,11 @@ const Navbar = ({ id }: SearchComponentProps) => {
             <h1>Mass Index</h1>
           </div>
         </Link>
-
-        <div className="navbar-card cursor-pointer px-2 py-1 rounded-sm text-gray-300 font-semibold bg-zinc-800 hover:bg-zinc-700 mb-3">
-          <h1>Fat Percentage</h1>
-        </div>
+        <Link to="/fatPer">
+          <div className={`${(id === 'fatPer') ? "text-blue-400" : "text-gray-300"} navbar-card cursor-pointer px-2 py-1 rounded-sm  font-semibold bg-zinc-800 hover:bg-zinc-700 mb-3`}>
+            <h1>Fat Percentage</h1>
+          </div>
+        </Link>
       </div>
     </>
   )
@@ -114,9 +115,11 @@ const ResponsiveNav = ({ id }: SearchComponentProps) => {
           </div>
         </Link>
 
-        <div className="navbar-card cursor-pointer px-2 py-1 rounded-sm text-gray-300 font-semibold bg-zinc-800 hover:bg-zinc-700 mb-3">
-          <h1>Fat Percentage</h1>
-        </div>
+        <Link to="/fatPer">
+          <div className={`${(id === 'fatPer') ? "text-blue-400" : "text-gray-300"} navbar-card cursor-pointer px-2 py-1 rounded-sm  font-semibold bg-zinc-800 hover:bg-zinc-700 mb-3`}>
+            <h1>Fat Percentage</h1>
+          </div>
+        </Link>
       </div>
     </div>
   )

@@ -5,6 +5,7 @@ import ExerciseCard from '../components/ExerciseCard'
 import Error from "../components/Error"
 import { RootObject } from '../typos'
 
+
  
 const ExerciseWikiPage = () => {
     const [data, setData] = useState<RootObject[] | null>([])
@@ -49,6 +50,7 @@ const ExerciseWikiPage = () => {
                         }
                     </div>
                 </div>
+
             </div>
         </>
     )

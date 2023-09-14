@@ -14,8 +14,6 @@ const BMI_graphic = ({ data, bmi }: Interface) => {
   const [valueArr, setValueArr] = useState(data.split(' '))
   const [valueMin, setValueMin] = useState(valueArr[0])
   const [valueMax, setValueMax] = useState(valueArr[valueArr.length - 1])
-  const max = 35;
-  const min = 5;
 
 
   const innerBarWidth = (val: number) => {

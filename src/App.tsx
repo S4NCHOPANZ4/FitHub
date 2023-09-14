@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Home , DailycaloryPage, ExerciseWikiPage, BMIpage} from './Routes'
+import { Home , DailycaloryPage, ExerciseWikiPage, BMIpage, BodyFatPage} from './Routes'
+import Footer from "./components/Footer";
 
 function App() {
 
@@ -20,10 +21,14 @@ function App() {
             <Route path="/bmi" element={<BMIpage />} />
           </Routes>
           <Routes>
+            <Route path="/fatPer" element={<BodyFatPage />} />
+          </Routes>
+          <Routes>
             <Route path="/" element={<Home />} />
           </Routes>
         </BrowserRouter>
       </div>
+      <Footer/>
     </div>
   )
 }

@@ -1,11 +1,11 @@
 import axios from "axios";
-import { Api_fetchBMI, Api_fetchDailyCal, Api_fetchMuscle } from "./typos";
+import { Api_fetchBMI, Api_fetchBodyFat, Api_fetchDailyCal, Api_fetchMuscle } from "./typos";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const API_HOST = import.meta.env.VITE_API_HOST;
 const API_HOST_VIDEO = import.meta.env.VITE_API_HOST_VIDEO;
 
-export async function fetchMuscle(params: Api_fetchMuscle ) {
+export async function fetchMuscle(params: Api_fetchMuscle) {
 
   try {
     const response = await axios.get('https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises', {
@@ -76,11 +76,11 @@ export async function BmiFetch(params: Api_fetchBMI) {
     url: 'https://fitness-calculator.p.rapidapi.com/bmi',
     params,
     headers: {
-      'X-RapidAPI-Key':  API_KEY,
+      'X-RapidAPI-Key': API_KEY,
       'X-RapidAPI-Host': 'fitness-calculator.p.rapidapi.com'
     }
   };
-  
+
   try {
     const response = await axios.request(options)
     return response.data;
@@ -90,6 +90,25 @@ export async function BmiFetch(params: Api_fetchBMI) {
   }
 }
 
+//===============================================================================
 
+export async function BodyFatFetch(params: Api_fetchBodyFat) {
 
+  const options = {
+    method: 'GET',
+    url: 'https://fitness-calculator.p.rapidapi.com/bodyfat',
+    params,
+    headers: {
+      'X-RapidAPI-Key': API_KEY,
+      'X-RapidAPI-Host': 'fitness-calculator.p.rapidapi.com'
+    }
+  };
 
+  try {
+    const response = await axios.request(options)
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching video:", error);
+    throw error;
+  }
+}

@@ -155,3 +155,29 @@ export interface BMIDataObj {
     healthy_bmi_range: string;
 }
 
+//================object Body Fat Fetch ============================
+
+export interface Api_fetchBodyFat{
+    age: string,
+    gender?: string | null,
+    height: string,
+    weight: string,
+    neck: string,
+    waist: string,
+    hip: string
+  }
+
+  export interface BodyFatFetchRootObject {
+    data:           BodyFatData;
+    request_result: string;
+    status_code:    number;
+   }
+   
+   export interface BodyFatData {
+    "Body Fat (BMI method)":       number;
+    "Body Fat (U.S. Navy Method)": number;
+    "Body Fat Category":           string;
+    "Body Fat Mass":               number;
+    "Lean Body Mass":              number;
+   }
+   

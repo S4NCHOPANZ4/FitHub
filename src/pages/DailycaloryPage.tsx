@@ -7,6 +7,7 @@ import { BsGenderMale, BsGenderFemale, BsGenderAmbiguous, BsFire, BsHeartPulseFi
 import { AiOutlineSend } from 'react-icons/ai'
 import { fetchDailyCalories } from "../Api"
 import { DataDailyCalories } from "../typos"
+import Footer from "../components/Footer"
 
 const DailycaloryPage = () => {
 
@@ -106,7 +107,7 @@ const DailycaloryPage = () => {
       <div>
         <Navbar id={'dailyCal'} />
       </div>
-      <div className='w-full md:w-[80%]  flex  justify-center h-[90vh] mt-5'>
+      <div className='w-full md:w-[80%]  flex  justify-center  mt-5'>
         <div className='flex w-full flex-col'>
           <div className="flex items-center justify-evenly mb-5 flex-col md:flex-row">
             <div className="flex justify-center items-center md:items-end flex-row md:flex-col ">
@@ -154,16 +155,6 @@ const DailycaloryPage = () => {
                       <BsGenderFemale />
                       <h1 className="ml-2">Female</h1>
                     </div>
-                    <div
-                      onClick={() => {
-                        setGenderErr(false)
-                        setGender('Other')
-                      }}
-                      className="p-2 hover:bg-zinc-600 cursor-pointer flex items-center ">
-                      <BsGenderAmbiguous />
-                      <h1 className="ml-2">Other</h1>
-                    </div>
-
 
                   </div>
                   <FaTransgender className='absolute left-1' color="white" />
