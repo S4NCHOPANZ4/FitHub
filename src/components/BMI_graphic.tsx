@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io'
 
 
@@ -11,10 +10,14 @@ interface Interface {
 const BMI_graphic = ({ data, bmi }: Interface) => {
 
 
-  const [valueArr, setValueArr] = useState(data.split(' '))
-  const [valueMin, setValueMin] = useState(valueArr[0])
-  const [valueMax, setValueMax] = useState(valueArr[valueArr.length - 1])
+  // const [valueArr, setValueArr] = useState(data.split(' '))
+  // const [valueMin, setValueMin] = useState(valueArr[0])
+  // const [valueMax, setValueMax] = useState(valueArr[valueArr.length - 1])
 
+
+  const valueArr = data.split(' ')
+  const valueMin = valueArr[0]
+  const valueMax = valueArr[valueArr.length - 1]
 
   const innerBarWidth = (val: number) => {
         
