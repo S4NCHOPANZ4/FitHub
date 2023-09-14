@@ -3,11 +3,11 @@ import Navbar from '../components/Navbar'
 import { BiSolidBabyCarriage } from 'react-icons/bi'
 import { FaTransgender } from 'react-icons/fa'
 import { GiBodyHeight, GiWeight } from 'react-icons/gi'
-import { BsGenderMale, BsGenderFemale, BsGenderAmbiguous, BsFire, BsHeartPulseFill } from 'react-icons/bs'
+import { BsGenderMale, BsGenderFemale, BsFire, BsHeartPulseFill } from 'react-icons/bs'
 import { AiOutlineSend } from 'react-icons/ai'
 import { fetchDailyCalories } from "../Api"
 import { DataDailyCalories } from "../typos"
-import Footer from "../components/Footer"
+import Error from "../components/Error"
 
 const DailycaloryPage = () => {
 
@@ -310,6 +310,9 @@ const DailycaloryPage = () => {
                   <p className="text-zinc-400 text-lg mt-2">Use the menu above to make a search!</p>
                 </div>
 
+            }
+            {(error && !loading) &&
+              <Error errorMessage={'Sorry, something went wrong. Please try again later.'} />
             }
 
           </div>

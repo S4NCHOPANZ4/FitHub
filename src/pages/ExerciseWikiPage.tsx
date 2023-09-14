@@ -31,7 +31,7 @@ const ExerciseWikiPage = () => {
             <div className="mr-3">
                 <Navbar id={id}/>
             </div>
-            <div className="w-full md:w-[80%] mt-5">
+            <div className="w-full md:w-[80%] mt-5 min-h-[90vh]">
                 <SearchComponent setData={setData} setError={setError} setLoading={setLoading} setErrorMessage={setErrorMessage} />
                 <div className="exercises-super w-[100%] mt-5 p-2 rounded-md">
 

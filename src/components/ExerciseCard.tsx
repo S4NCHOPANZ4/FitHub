@@ -49,8 +49,6 @@ const ExerciseCard = ({ data }: SearchComponentProps) => {
 
     useEffect(() => {
         setOpen(false)
-        console.log('a');
-        
     }, [data])
 
 

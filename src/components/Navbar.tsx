@@ -17,23 +17,19 @@ const Navbar = ({ id }: SearchComponentProps) => {
       <div className='md:hidden block'>
         <ResponsiveNav id={id} />
       </div>
-      <div className='mt-5 md:block hidden'>
+      <div className='mt-5 md:block hidden '>
 
         <Link to="/">
           <div className="icon_nav flex justify-center items-center cursor-pointer pb-3 mb-4">
             <img
               className="w-[70px] mr-2"
               src={Icon_md} alt="Icon" />
-            <h1 className="text-gray-300 font-semibold text-2xl">GetToLive</h1>
+            <h1 className="text-gray-300 font-semibold text-2xl">FitHub</h1>
           </div>
         </Link>
+
         <Link to="/">
-          <div className={`${(id === undefined) ? "text-blue-400" : "text-gray-300"} navbar-card cursor-pointer px-2 py-1 rounded-sm font-semibold bg-zinc-800 hover:bg-zinc-700 mb-3`}>
-            <h1>Home</h1>
-          </div>
-        </Link>
-        <Link to="/muscleWiki">
-          <div className={`${(id === 'muscleWiki') ? "text-blue-400" : "text-gray-300"} navbar-card cursor-pointer px-2 py-1 rounded-sm font-semibold bg-zinc-800 hover:bg-zinc-700 mb-3`}>
+          <div className={`${(id === '') ? "text-blue-400" : "text-gray-300"} navbar-card cursor-pointer px-2 py-1 rounded-sm font-semibold bg-zinc-800 hover:bg-zinc-700 mb-3`}>
             <h1>Exercise Wiki</h1>
           </div>
         </Link>
@@ -94,12 +90,7 @@ const ResponsiveNav = ({ id }: SearchComponentProps) => {
           </div>
         </Link>
         <Link to="/">
-          <div className={`${(id === undefined) ? "text-blue-400" : "text-gray-300"} navbar-card cursor-pointer px-2 py-1 rounded-sm font-semibold bg-zinc-800 hover:bg-zinc-700 mb-3`}>
-            <h1>Home</h1>
-          </div>
-        </Link>
-        <Link to="/muscleWiki">
-          <div className={`${(id === 'muscleWiki') ? "text-blue-400" : "text-gray-300"} navbar-card cursor-pointer px-2 py-1 rounded-sm font-semibold bg-zinc-800 hover:bg-zinc-700 mb-3`}>
+          <div className={`${(id === '') ? "text-blue-400" : "text-gray-300"} navbar-card cursor-pointer px-2 py-1 rounded-sm font-semibold bg-zinc-800 hover:bg-zinc-700 mb-3`}>
             <h1>Exercise Wiki</h1>
           </div>
         </Link>
